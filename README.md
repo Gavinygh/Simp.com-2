@@ -1,3 +1,4 @@
+This project was developed originally in [repo](https://github.com/IsabellaLCYang/Simp.Com), and I practice deploying with AWS here.
 # [Doge-Commerce](https://dogecom.herokuapp.com)
 
 
