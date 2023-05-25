@@ -1,0 +1,9 @@
+.rememberMe {
+    position: relative;
+}
+
+@media only screen and (max-width: 900px) {
+    #googleSignIn {
+        margin-left: 30vw;
+    }
+}
