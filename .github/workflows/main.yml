@@ -1,4 +1,4 @@
-name: Deploy to AWS ECS
+name: Build and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,16 +20,20 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Build and push Docker image
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and Push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: v1
+          tags: 569678543299.dkr.ecr.us-east-1.amazonaws.com/simp.com:v1
 
       - name: Update ECS service
         run: |
           aws ecs update-service \
-            --cluster <your-ecs-cluster-name> \
-            --service <your-ecs-service-name> \
+            --cluster cluster1 \
+            --service simpcomweb \
             --force-new-deployment
