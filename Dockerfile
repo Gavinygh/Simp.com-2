@@ -33,3 +33,5 @@ RUN cd server && npm run build
 EXPOSE 8888
 
 CMD npm start --prefix server
+
+#
